@@ -88,7 +88,7 @@
         
         <div class="col-lg-6 hidden" id="tipoLoading" style="margin-top:20px;background:rgba(0,0,0,0)">
               <img style="width:10%;margin-left:45%;padding-bottom:10px"src="<?=base_url('assets/img/ajax-loader.gif');?>">
-              <h4  class='text-center'>Aguarde enquanto processamos sua importação. Isto pode demorar alguns minutos...</h4>
+              <h4  class='text-center'>Aguarde enquanto processamos sua importação. Isto pode demorar alguns instantes...</h4>
         </div>
 
         <div class="col-lg-6">

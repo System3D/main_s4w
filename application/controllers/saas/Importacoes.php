@@ -313,7 +313,7 @@ private function checkTemp($importacaoID){
     $xyz = array();
     $x=0;
     foreach($dados as $dado){
-        if($dado->FLG_REC == 3){
+        if($dado->FLG_REC == 3 && $dado->NUM_COM != 'MATHEUS' && $dado->NUM_DIS != 'TESTANDO'){
             foreach($here as $hr){
                 if($hr->FLG_REC == 3){
                     if($dado->X == $hr->X && $dado->Y == $hr->Y && $dado->Z == $hr->Z){
@@ -390,6 +390,8 @@ private function savedbf($importacaoID) {
             $record['fkpreparacao'] = 0;
             $record['fkmedicao']    = 0;
 
+        if($record['NUM_COM'] != 'MATHEUS' && $record['NUM_DIS'] != 'TESTANDO'){
+
         if(!isset($chekc)){
           $RKeys = array_keys($record);
               foreach($RKeys as $key){
@@ -416,6 +418,7 @@ private function savedbf($importacaoID) {
          }
          
            $importID = $this->fil->insert($record);
+       }
         }
         if(!empty($importID)){
             fclose($fdbf);
@@ -470,7 +473,7 @@ private function savedbf($importacaoID) {
             $record['fkImportacao'] = $importacaoID;
             $record['fkpreparacao'] = 0;
             $record['fkmedicao']    = 0;
-
+        if($record['NUM_COM'] != 'MATHEUS' && $record['NUM_DIS'] != 'TESTANDO'){
         if(!isset($chekc)){
           $RKeys = array_keys($record);
               foreach($RKeys as $key){
@@ -495,8 +498,11 @@ private function savedbf($importacaoID) {
               }
               
          }
+     
          
            $importID = $this->fil->insert($record);
+
+        }
         }
         if(!empty($importID)){
             fclose($fdbf);

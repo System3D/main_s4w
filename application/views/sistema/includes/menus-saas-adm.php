@@ -29,12 +29,12 @@
             }elseif($this->session->userdata('converting') == 'success'){
                 $this->session->set_userdata('converting', false);
         ?>
-        <div class='panel panel-success' id='convertSuccess' style='display:inline-block !important;padding:10px;margin-bottom:0'>Conversão realizada com sucesso <span id='xsuccess' style='margin-left:10px;border:1px solid #424242;padding:1px 3px '>x</span></div>
+        <div class='panel panel-success' id='convertSuccess' style='display:inline-block !important;padding:10px;margin-bottom:0'><i style='color:green' class="fa fa-check"></i>&ensp;Conversão realizada com sucesso &ensp;&ensp;&ensp; <span id='xsuccess' style='margin-left:10px;padding:1px 3px '><i class="fa fa-times-circle"></i></span>&ensp;</div>
         <?php
             }elseif($this->session->userdata('converting') == 'error'){
                 $this->session->set_userdata('converting', false);
         ?>
-        <div class='panel panel-danger' style='display:inline-block !important;padding:10px;margin-bottom:0' id='convertError'>Falha na Conversão. <span id='xerro' style='margin-left:10px;border:1px solid #424242;padding:1px 3px '>x</span></div>
+        <div class='panel panel-danger' style='display:inline-block !important;padding:10px;margin-bottom:0' id='convertError'><i style='color:red' class="fa fa-exclamation-triangle"></i>&ensp;Falha na Conversão. &ensp;&ensp;&ensp;<span id='xerro' style='margin-left:10px;padding:1px 3px '><i class="fa fa-times-circle"></i></span>&ensp;</div>
         <?php
             }
         ?>

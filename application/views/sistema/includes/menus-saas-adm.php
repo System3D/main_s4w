@@ -49,8 +49,8 @@
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="<?=base_url('saas/profile/ver');?>"><i class="fa fa-user fa-fw"></i> Perfil do usuário</a>
                 </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
-                </li>
+               <!-- <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                </li> -->
                 <li class="divider"></li>
                 <li><a href="<?=base_url('logout');?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
@@ -66,6 +66,9 @@
             <ul class="nav" id="side-menu">
                 <li>
                     <a href="<?=base_url('saas/admin');?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+                 <li>
+                    <a href="<?=base_url('saas/estagio/listar');?>"><i class="fa fa-coffee fa-fw"></i> Estagiso</a>
                 </li>
                 <li>
                     <a href="<?=base_url('saas/clientes/listar');?>"><i class="fa fa-users fa-fw"></i> Clientes</a>

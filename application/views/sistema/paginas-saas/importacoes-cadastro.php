@@ -56,6 +56,14 @@
                                             <label>Observações</label>
                                             <textarea name="observacoes" class="form-control" rows="3"></textarea>
                                         </div>
+                                        <?php $toDisable = (count($importacoes) == 0) ? '' : 'disabled'; ?>
+                                        <div class="form-group">
+                                            <label>Sentido</label> <br>
+                                            <input type="radio" name='sentido' <?php if($importacoes[0]->sentido == 1 || count($importacoes) == 0) echo ' checked ' ?> <?= $toDisable ?> value='1'> X / Y &nbsp; &nbsp;
+                                            <input type="radio" name='sentido' <?php if($importacoes[0]->sentido == 2 && count($importacoes) != 0) echo ' checked ' ?> <?= $toDisable ?> value='2'> -X / Y &nbsp; &nbsp;
+                                            <input type="radio" name='sentido' <?php if($importacoes[0]->sentido == 3 && count($importacoes) != 0) echo ' checked ' ?> <?= $toDisable ?> value='3'> -X- / Y &nbsp; &nbsp;
+                                            <input type="radio" name='sentido' <?php if($importacoes[0]->sentido == 4 && count($importacoes) != 0) echo ' checked ' ?> <?= $toDisable ?> value='4'> X / -Y &nbsp; &nbsp;
+                                        </div>
                                         <input type="hidden" name="subetapaID" value="<?=$dados->subetapaID;?>">
                                         <button type="submit" class="btn btn-primary btn-block" id="subImport"><i class="fa fa-cloud-upload"></i> Importar</button>
                                     </form>
@@ -88,7 +96,7 @@
         
         <div class="col-lg-6 hidden" id="tipoLoading" style="margin-top:20px;background:rgba(0,0,0,0)">
               <img style="width:10%;margin-left:45%;padding-bottom:10px"src="<?=base_url('assets/img/ajax-loader.gif');?>">
-              <h4  class='text-center'>Aguarde enquanto processamos sua importação. Isto pode demorar alguns instantes...</h4>
+              <h4 style='padding-bottom:15px' class='text-center'>Aguarde enquanto processamos sua importação. Isto pode demorar alguns instantes...</h4>
         </div>
 
         <div class="col-lg-6">
@@ -172,16 +180,17 @@
                             echo '<hr />';
                             $nrArqui++;
                         }
-                    ?>
-                    <p align="left"><i class="fa fa-file-code-o fa-2x"></i> &nbsp;&nbsp; <strong><a href="<?=base_url() . 'arquivos/' . $importacao->locatarioID . '/' . $importacao->clienteID . '/' . $importacao->obraID . '/' . $importacao->etapaID . '/' . $importacao->subetapaID . '/' . $importacao->importacaoNr . '/' . $importacao->arquivo;?>" target="_blank"><?=$importacao->arquivo;?></a></strong> - <?=$importacao->importacaoNr;?>ª importação
-                    <?php
                        if(!in_array($importacao->importacaoNr, $nrdDone)){
                         ?>
-                         <a href="<?= base_url()."saas/importacoes/todeletedbf/".$importacao->importacaoID?>" title="Excluir Importação" style="color:red;float:right;margin-right:20px"><i class="fa fa-trash-o fa-2x"></i></a>
+                        <a href="<?= base_url()."saas/importacoes/todeletedbf/".$importacao->importacaoID?>" title="Excluir Importação" style="color:red;float:right;margin-right:20px"><i class="fa fa-trash-o fa-2x"></i></a>
+                        
                         <?php
+                        if(!empty($importacao->observacoes))
+                          echo  "<p style='font-size:14px;padding-right:60px;padding-bottom:20px'>&nbsp;".$importacao->observacoes."</p>";
                         $nrdDone[] = $importacao->importacaoNr;
                        }
                     ?>
+                    <p align="left"><i class="fa fa-file-code-o fa-2x"></i> &nbsp;&nbsp; <strong><a href="<?=base_url() . 'arquivos/' . $importacao->locatarioID . '/' . $importacao->clienteID . '/' . $importacao->obraID . '/' . $importacao->etapaID . '/' . $importacao->subetapaID . '/' . $importacao->importacaoNr . '/' . $importacao->arquivo;?>" target="_blank"><?=$importacao->arquivo;?></a></strong> - <?=$importacao->importacaoNr;?>ª importação
                     </p>
                     <?php
                     }

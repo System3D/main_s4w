@@ -231,7 +231,8 @@ class Importacoes extends MY_Controller {
                             'etapaID'      => $dados->etapaID,
                             'subetapaID'   => $dados->subetapaID,
                             'importacaoNr' => $nroImportacao,
-                            'observacoes'  => $this->input->post('observacoes')
+                            'observacoes'  => $this->input->post('observacoes'),
+                            'sentido'      => $this->input->post('sentido')
                             );
 
                         $importacaoID = $this->import->insert($attibutes);
@@ -290,7 +291,11 @@ class Importacoes extends MY_Controller {
             }
             $log = 'Importação de arquivos - SubEtapa: ' . $subEtapaID . ' - IP: ' . $this->input->ip_address();
             $this->logs->gravar($log);
-            $data['success'] = 'Importação realizada com sucesso!';
+            if(!empty($this->session->flashdata('toConvert'))){
+                $data['success'] = 'Importação realizada com sucesso! Aguarde o encerramento da conversão do arquivo .ifc';
+            }else{
+               $data['success'] = 'Importação realizada com sucesso!'; 
+            }
             $this->session->set_flashdata('success', $data['success']);
             redirect("saas/importacoes/listar/".$subEtapaID, 'refresh');
 
@@ -337,6 +342,7 @@ private function insertTemp($importacaoID){
     $this->fil->setTable('tbhandle','id');
     $dados = $this->temph->get_by_field('fkimportacao',$importacaoID);
     foreach($dados as $dado){
+        unset($dado->id);
         $importID = $this->fil->insert($dado);
     }
     if(!empty($importID)){
@@ -384,7 +390,7 @@ private function savedbf($importacaoID) {
             $record['obra']         = $dados->obraID;
             $record['id']           = 0;
             $record['fklote']       = 0;
-            $record['fkestagio']    = $dados->subetapaID;
+            $record['fkestagio']    = 1;
             $record['fketapa']      = $dados->etapaID;
             $record['fkImportacao'] = $importacaoID;
             $record['fkpreparacao'] = 0;
@@ -515,14 +521,14 @@ private function savedbf($importacaoID) {
     }
 
 
-private function keys_are_equal($array1, $array2) {
-  return !array_diff_key($array1, $array2) && !array_diff_key($array2, $array1);
-}
+    private function keys_are_equal($array1, $array2) {
+        return !array_diff_key($array1, $array2) && !array_diff_key($array2, $array1);
+    }
 
     public function getIfc(){
 
-            $impId      = strip_tags(trim($this->input->post('id')));
-           $this->converteIfc($impId);
+        $impId      = strip_tags(trim($this->input->post('id')));
+        $this->converteIfc($impId);
             
     }
 

@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 /* Debugger */
-define('debug1', '<pre><div class="row" style="border:3px solid red;background-color:#73C3DD; color: red; margin:5%;padding:15px;display:block; width:90%;line-height:50px"><b>');
+define('debug1', '<pre><div class="row" style="border:3px solid #4E0808;background-color:#73C3DD; color: #4E0808; margin:5%;padding:15px;display:block; width:90%;line-height:50px"><b>');
 define('debug2', '</b></div></pre>');
 
 function dbug($x){
@@ -19,7 +19,7 @@ function dbug($x){
 }
 
 function dbugnp($x){
-	echo '<div class="row" style="border:3px solid red;background-color:#73C3DD; color: red; margin:5%;padding:15px;display:block; width:90%;line-height:50px"><b>';
+	echo '<div class="row" style="border:3px solid #4E0808;background-color:#73C3DD; color: #4E0808; margin:5%;padding:15px;display:block; width:90%;line-height:50px"><b>';
 	var_dump($x);
 	echo  '</b></div>';
 	die();
@@ -32,17 +32,17 @@ function dbugnd($x){
 }
 
 function dbugnpnd($x){
-	echo '<div class="row" style="border:3px solid red;background-color:#73C3DD; color: red; margin:5%;padding:15px;display:block; width:90%;line-height:50px"><b>';
+	echo '<div class="row" style="border:3px solid #4E0808;background-color:#73C3DD; color: #4E0808; margin:5%;padding:15px;display:block; width:90%;line-height:50px"><b>';
 	var_dump($x);
 	echo  '</b></div>';
 }
 
 function dbugdb($x,$y){
 	echo '<pre><div class="row"><b>';
-	echo '<div style="width:40%;float:left;border:3px solid red;background-color:#73C3DD; color: red;line-height:50px">';
+	echo '<div style="width:40%;float:left;border:3px solid #4E0808;background-color:#73C3DD; color: #4E0808;line-height:50px">';
 	var_dump($x);
 	echo '</div>';
-	echo '<div style="width:40%;float:right;border:3px solid red;background-color:#73C3DD; color: red;line-height:50px">';
+	echo '<div style="width:40%;float:right;border:3px solid #4E0808;background-color:#73C3DD; color: #4E0808;line-height:50px">';
 	var_dump($y);
 	echo '</div>';
 	echo  '</b></div></pre>';

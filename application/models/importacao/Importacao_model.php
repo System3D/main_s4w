@@ -149,4 +149,29 @@ class Importacao_model extends CI_Model{
             return true;
         endif;
     }
+
+    public function getCoords($mar, $qtd){
+         $this->db->select('*')
+            ->from('tbhandle')
+            ->join('obras', 'obras.obraID = tbhandle.obra')
+            ->join('clientes', 'clientes.clienteID = obras.clienteID')
+            ->where('clientes.locatarioID', $this->session->userdata('locatarioID'))
+            ->where('MAR_PEZ', $mar)
+            ->where('FLG_REC', 3)
+            ->order_by('X', 'ASC') //Mode XY, -XY would be (X DESC Y ASC), -X-Y would be (X DESC Y DESC) and X-Y would be (X ASC Y DESC)
+            ->order_by('Y', 'ASC')
+            ->limit($qtd);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getConjuntos($id){
+        $this->db->distinct('MAR_PEZ')
+             ->from('tbhandle')
+             ->where('FLG_REC', 3)
+             ->where('fkimportacao', $id)
+             ->group_by('MAR_PEZ');;
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

@@ -72,6 +72,15 @@ class Obras_model extends CI_Model{
         return $query->result();
     }
 
+    public function get_all_right(){
+        $this->db->select('*')
+                ->from($this->table)
+                ->join('clientes', 'clientes.clienteID = obras.clienteID')
+                ->where('clientes.locatarioID', $this->session->userdata('locatarioID'));
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function insert($attributes)
     {
         if($this->db->insert($this->table, $attributes)):

@@ -13,6 +13,8 @@ class Estagio extends MY_Controller {
         $this->load->model('importacao/Importacao_model', 'import');
         $this->load->model('template/Template_model', 'fil');
         $this->fil->setTable('tbhandle','id');
+         $this->load->model('obras/Obras_model', 'obras');
+         $this->load->model('etapas/Etapas_model', 'etapas');
         
     }
 
@@ -26,13 +28,27 @@ class Estagio extends MY_Controller {
     }
 
     public function teste(){
-        $data = strip_tags(trim($this->input->post('username')));
-        dbugnd($_POST);
-        die('success');
+
+        $data = strip_tags(trim($this->input->post('id')));
+        $that = $this->etapas->get_by_field2('obraID', $data);
+        $all = '';
+        $x = 0;
+        foreach($that as $etapa){
+            $all .= $etapa->etapaID.'&'.$etapa->codigoEtapa;
+            $x++;
+            if($x < count($that)){
+                $all .= '&x&';
+            }
+
+        }
+            echo $all;
+        die();
     }
 
     public function conjuntos($id){
         $data['titulo'] = 'Steel4Web - Administrador';
+       
+        $data['obras'] = $this->obras->get_all_right();
         $data['importacao'] = $this->import->get_by_id($id);
         $data['conjuntos'] = $this->import->getConjuntos($id);
         $pagina = 'conj-list';

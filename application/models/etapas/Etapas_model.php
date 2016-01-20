@@ -53,6 +53,17 @@ class Etapas_model extends CI_Model{
         return false;
     }
 
+     public function get_by_field2($field, $value)
+    {
+        $this->db->select('*')
+            ->from($this->table)
+            ->join('obras', 'obras.obraID = etapas.obraID')
+            ->join('clientes', 'clientes.clienteID = obras.clienteID')
+            ->where('clientes.locatarioID', $this->session->userdata('locatarioID'))
+            ->where('obras.'.$field, $value);
+            $query = $this->db->get();
+             return $query->result();
+    }
     public function get_all($obraID)
     {
         $this->db->select('etapas.*')

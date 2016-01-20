@@ -22,19 +22,22 @@
         <div class="navbar-form navbar-left">
             <div class="form-group">
                 <label class="" for="">Obra: </label>
-                <select id="inputObra" class="form-control" required="required" name="obra"><option value="1">DemuthTest</option><option value="15">188-NI</option><option value="21">Test</option></select>
-            </div>
-
-            <div class="form-group inputetapa">
-                <label class="" for=""> Etapa: </label>
-                <select id="inputEtapa" class="form-control" required="required" name="etapa">
-                <option value="1">DemuthTest</option>
+                <select id="inputObra" class="form-control" required="required" name="obra">
+                    <option>Escolha Uma Obra</option>
+                    <?php foreach ($obras as $obra) { ; ?>
+                    <option value="<?= $obra->obraID ?>"><?= $obra->nome ?></option>
+                    <?php } ?>
                 </select>
             </div>
-            <div class="form-group inputetapa">
+
+            <div class="form-group inputetapa hidden">
+                <label class="" for=""> Etapa: </label>
+                <select id="inputEtapa" class="form-control" required="required" name="etapa">
+                </select>
+            </div>
+            <div class="form-group inputlote hidden">
                 <label class="" for=""> Lote: </label>
                 <select id="inputEtapa" class="form-control" required="required" name="etapa">
-                <option value="1">DemuthTest</option>
                 </select>
             </div>
             <div class="form-group">
@@ -44,7 +47,7 @@
         </form>
 
                     </nav>
-                    <button id="formButton">Enviar</button>
+               <!--     <button id="formButton">Enviar</button> -->
                     <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered  dt-responsive nowrap table-hover" cellspacing="0" width="100%" id="lotPointer">
                             <thead>

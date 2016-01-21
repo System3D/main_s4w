@@ -59,7 +59,7 @@ $(document).ready(function() {
     });
 
       $('#inputObra').change(function() {
-      	$('.inputetapa').removeClass('hidden');
+      	
       	var dados = $('#inputObra').val();
       	jQuery.ajax({
                 type: "POST",
@@ -69,9 +69,7 @@ $(document).ready(function() {
                 success: function(result){
              var myArray = result.split('&x&');
              var temp;
-             $('#inputEtapa').find('option')
-    .remove()
-    .end();
+             $('#inputEtapa').find('option').remove().end();
            	for (var i = 0; i < myArray.length; ++i) {
            		temp = myArray[i].split('&');
            $('#inputEtapa').append($('<option>', {
@@ -82,6 +80,7 @@ $(document).ready(function() {
            };
                 }
             });
+        $('.inputetapa').removeClass('hidden');
       });
   
     

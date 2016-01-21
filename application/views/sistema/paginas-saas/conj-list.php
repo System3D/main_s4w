@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label class="" for="">Obra: </label>
                 <select id="inputObra" class="form-control" required="required" name="obra">
-                    <option>Escolha Uma Obra</option>
+                    <option id='optPadrao' val='abc'>Escolha Uma Obra</option>
                     <?php foreach ($obras as $obra) { ; ?>
                     <option value="<?= $obra->obraID ?>"><?= $obra->nome ?></option>
                     <?php } ?>
